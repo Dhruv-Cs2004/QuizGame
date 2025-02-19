@@ -1,3 +1,6 @@
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CallMainGame {
@@ -18,6 +21,7 @@ public class CallMainGame {
         if(ans==4){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -37,6 +41,7 @@ public class CallMainGame {
         if(ans==2){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -56,6 +61,7 @@ public class CallMainGame {
         if(ans==3){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -77,6 +83,7 @@ public class CallMainGame {
         if(ans==1){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -98,6 +105,7 @@ public class CallMainGame {
         if(ans==2){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -117,6 +125,7 @@ public class CallMainGame {
         if(ans==2){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -136,6 +145,7 @@ public class CallMainGame {
         if(ans==2){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -156,6 +166,7 @@ public class CallMainGame {
         if(ans==3){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -175,6 +186,7 @@ public class CallMainGame {
         if(ans==1){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
@@ -195,9 +207,24 @@ public class CallMainGame {
         if(ans==2){
             System.out.println("Correct Answer +10");
             total=total+10;
+            earnsCoins();
         }
         else {
             exit=1;
+        }
+    }
+
+    public static void earnsCoins() {
+        try {
+            File file = new File("game-bonus-2-294436.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioStream);
+            clip.start();
+            Thread.sleep(clip.getMicrosecondLength() / 5000);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
     public int getTotal(){
@@ -206,4 +233,5 @@ public class CallMainGame {
     public int getExit(){
         return exit;
     }
+
 }

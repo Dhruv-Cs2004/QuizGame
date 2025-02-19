@@ -1,3 +1,7 @@
+
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,11 +63,40 @@ public class MainGame {
         int less= game.getTotal();
         if(less<60){
             System.out.println("You Score is Less Than 60 So you Loose");
+            Voice();
+
             System.exit(0);
         }
         else {
             System.out.println("You Win This Game Congregation");
+            Winning();
             System.exit(0);
+        }
+    }
+    public static void Voice() {
+        try {
+            File file = new File("you-lose-game-sound-230514.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioStream);
+            clip.start();
+            Thread.sleep(clip.getMicrosecondLength() / 1000);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void Winning() {
+        try {
+            File file = new File("you-win-sequence-1-183948.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioStream);
+            clip.start();
+            Thread.sleep(clip.getMicrosecondLength() / 1000);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
