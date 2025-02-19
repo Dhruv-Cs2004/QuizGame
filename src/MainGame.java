@@ -83,8 +83,8 @@ public class MainGame {
             clip.start();
             Thread.sleep(clip.getMicrosecondLength() / 1000);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
-            e.printStackTrace();
-        }
+             e.printStackTrace();
+         }
     }
     public static void Winning() {
         try {
